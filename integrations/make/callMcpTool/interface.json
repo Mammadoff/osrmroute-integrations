@@ -1,0 +1,22 @@
+[
+  {
+    "name": "content",
+    "type": "array",
+    "label": "Content",
+    "spec": [
+      {
+        "name": "type",
+        "type": "text"
+      },
+      {
+        "name": "text",
+        "type": "text"
+      }
+    ]
+  },
+  {
+    "name": "isError",
+    "type": "boolean",
+    "label": "Is error"
+  }
+]

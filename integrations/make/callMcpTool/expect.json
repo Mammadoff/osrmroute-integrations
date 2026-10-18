@@ -1,0 +1,90 @@
+[
+  {
+    "name": "tool",
+    "type": "select",
+    "label": "Location tool",
+    "required": true,
+    "options": [
+      {
+        "label": "Place Details",
+        "value": "place_details"
+      },
+      {
+        "label": "Get Route",
+        "value": "get_route"
+      },
+      {
+        "label": "Distance Matrix",
+        "value": "distance_matrix"
+      },
+      {
+        "label": "Reverse Geocode",
+        "value": "reverse_geocode"
+      },
+      {
+        "label": "Autocomplete Address",
+        "value": "autocomplete_address"
+      },
+      {
+        "label": "Get Timezone",
+        "value": "get_timezone"
+      },
+      {
+        "label": "Get Isochrone",
+        "value": "get_isochrone"
+      },
+      {
+        "label": "Optimize Route",
+        "value": "optimize_route"
+      },
+      {
+        "label": "Geocode Address",
+        "value": "geocode_address"
+      },
+      {
+        "label": "Natural Search",
+        "value": "natural_search"
+      },
+      {
+        "label": "Suggest Addresses",
+        "value": "suggest_addresses"
+      },
+      {
+        "label": "Retrieve Place",
+        "value": "retrieve_place"
+      },
+      {
+        "label": "Structured Geocode",
+        "value": "structured_geocode"
+      },
+      {
+        "label": "Places Along Route",
+        "value": "places_along_route"
+      },
+      {
+        "label": "Static Map",
+        "value": "static_map"
+      },
+      {
+        "label": "List Styles",
+        "value": "list_styles"
+      },
+      {
+        "label": "List Datasets",
+        "value": "list_datasets"
+      },
+      {
+        "label": "Preview Style",
+        "value": "preview_style"
+      }
+    ]
+  },
+  {
+    "name": "arguments",
+    "type": "text",
+    "label": "Arguments (JSON)",
+    "required": true,
+    "default": "{\"q\":\"Berlin\"}",
+    "help": "Use the tool schema in https://osrmroute.com/docs/automation#mcp. Existing API credits and service permissions apply."
+  }
+]

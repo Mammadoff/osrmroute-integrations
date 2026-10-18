@@ -1,0 +1,25 @@
+{
+  "url": "/api/mcp",
+  "method": "POST",
+  "headers": {
+    "Accept": "application/json, text/event-stream",
+    "MCP-Protocol-Version": "2025-06-18"
+  },
+  "type": "json",
+  "body": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/call",
+    "params": {
+      "name": "{{parameters.tool}}",
+      "arguments": "{{parseJSON(parameters.arguments)}}"
+    }
+  },
+  "response": {
+    "valid": "{{!body.error && !body.result.isError}}",
+    "output": "{{body.result}}",
+    "error": {
+      "message": "OSRMRoute tool request failed. Check arguments, API scope, plan and credits."
+    }
+  }
+}
