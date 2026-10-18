@@ -1,0 +1,68 @@
+[
+  {
+    "name": "url",
+    "type": "text",
+    "label": "URL",
+    "required": true,
+    "help": "Enter a path relative to https://osrmroute.com/api, starting with /. For example: /1/geocode. Add query parameters below. Only OSRMRoute API endpoints are supported."
+  },
+  {
+    "name": "method",
+    "type": "select",
+    "label": "Method",
+    "default": "GET",
+    "required": true,
+    "options": [
+      {
+        "label": "GET",
+        "value": "GET"
+      },
+      {
+        "label": "POST",
+        "value": "POST"
+      },
+      {
+        "label": "PUT",
+        "value": "PUT"
+      },
+      {
+        "label": "PATCH",
+        "value": "PATCH"
+      },
+      {
+        "label": "DELETE",
+        "value": "DELETE"
+      }
+    ]
+  },
+  {
+    "name": "qs",
+    "label": "Query String",
+    "type": "array",
+    "spec": {
+      "label": "Parameter",
+      "type": "collection",
+      "spec": [
+        {
+          "name": "key",
+          "label": "Key",
+          "type": "text"
+        },
+        {
+          "name": "value",
+          "label": "Value",
+          "type": "text"
+        }
+      ]
+    },
+    "labels": {
+      "add": "Add parameter"
+    }
+  },
+  {
+    "name": "body",
+    "type": "any",
+    "label": "Body",
+    "help": "For JSON endpoints, enter valid JSON. Authorization is supplied by your connection."
+  }
+]

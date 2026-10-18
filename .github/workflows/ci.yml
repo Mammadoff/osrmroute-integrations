@@ -3,6 +3,14 @@ on: [push, pull_request]
 permissions:
   contents: read
 jobs:
+  integration-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test tests/*.test.cjs
   n8n:
     runs-on: ubuntu-latest
     defaults:

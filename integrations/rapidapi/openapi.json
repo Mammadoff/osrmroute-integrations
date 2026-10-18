@@ -3,7 +3,7 @@
   "info": {
     "title": "OSRMRoute API",
     "version": "1.1.0",
-    "description": "OSRMRoute \u2014 a Maps, Routing & Location API platform with 24 services (routing, geocoding, matrix, isochrones, timezone, elevation, geofencing, geometry and more). Authenticate with your API key as the `key` query parameter or an `Authorization: Bearer <key>` header.",
+    "description": "OSRMRoute Maps, Routing and Location APIs: 45 public operations including routing, geocoding, places, road data, Studio and background jobs. Use your RapidAPI application key and your own OSRMRoute API key in the Authorization: Bearer header. Your OSRMRoute plan, scopes and credits apply.",
     "contact": {
       "name": "OSRMRoute Support",
       "url": "https://osrmroute.com/contact",
@@ -18,19 +18,11 @@
   ],
   "security": [
     {
-      "apiKeyQuery": []
-    },
-    {
       "bearerAuth": []
     }
   ],
   "components": {
     "securitySchemes": {
-      "apiKeyQuery": {
-        "type": "apiKey",
-        "in": "query",
-        "name": "key"
-      },
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer"
