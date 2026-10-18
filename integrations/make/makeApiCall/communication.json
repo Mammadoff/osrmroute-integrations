@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "{{...}}": "{{toCollection(parameters.qs, 'key', 'value')}}"
+  },
+  "url": "https://osrmroute.com/api{{parameters.url}}",
+  "body": "{{parameters.body}}",
+  "type": "text",
+  "method": "{{parameters.method}}",
+  "headers": {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer {{connection.apiKey}}"
+  },
+  "response": {
+    "output": {
+      "body": "{{body}}",
+      "statusCode": "{{statusCode}}"
+    }
+  },
+  "log": {
+    "sanitize": [
+      "request.headers.authorization",
+      "request.headers.Authorization"
+    ]
+  }
+}
