@@ -15,6 +15,7 @@ export class Osrmroute implements INodeType {
    baseURL: 'https://osrmroute.com',
    headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
    disableFollowRedirect: true,
+   timeout: 30000,
   },
   properties: operations,
  };

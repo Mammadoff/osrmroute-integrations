@@ -1,10 +1,21 @@
 """QGIS dialog with asynchronous, bounded HTTPS requests."""
+
 import json
-from qgis.PyQt.QtCore import QUrl, QTimer
-from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply
-from qgis.PyQt.QtWidgets import QAction, QDialog, QFormLayout, QLineEdit, QComboBox, QPushButton, QLabel
+
 from qgis.core import QgsNetworkAccessManager, QgsProject, QgsVectorLayer
-from .core import request_url, feature_collection
+from qgis.PyQt.QtCore import QTimer, QUrl
+from qgis.PyQt.QtNetwork import QNetworkReply, QNetworkRequest
+from qgis.PyQt.QtWidgets import (
+    QAction,
+    QComboBox,
+    QDialog,
+    QFormLayout,
+    QLabel,
+    QLineEdit,
+    QPushButton,
+)
+
+from .core import feature_collection, request_url
 
 MAX_BYTES = 5 * 1024 * 1024
 
@@ -12,27 +23,29 @@ MAX_BYTES = 5 * 1024 * 1024
 class QueryDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle('OSRMRoute')
+        self.setWindowTitle("OSRMRoute")
         self.resize(580, 260)
         self.reply = None
         form = QFormLayout(self)
         self.key = QLineEdit()
         self.key.setEchoMode(QLineEdit.Password)
         self.mode = QComboBox()
-        self.mode.addItem('Find an address', 'geocode')
-        self.mode.addItem('Driving route', 'route')
+        self.mode.addItem("Find an address", "geocode")
+        self.mode.addItem("Driving route", "route")
         self.value = QLineEdit()
-        self.value.setPlaceholderText('Brandenburg Gate, Berlin')
+        self.value.setPlaceholderText("Brandenburg Gate, Berlin")
         self.mode.currentIndexChanged.connect(self.update_hint)
-        self.notice = QLabel('Queries are sent to OSRMRoute. Your API plan and credits apply.\nAPI key stays in memory only; it is cleared when this window closes.')
+        self.notice = QLabel(
+            "Queries are sent to OSRMRoute. Your API plan and credits apply.\nAPI key stays in memory only; it is cleared when this window closes."
+        )
         self.notice.setWordWrap(True)
-        self.status = QLabel('')
+        self.status = QLabel("")
         self.status.setWordWrap(True)
-        self.run_button = QPushButton('Run and add layer')
+        self.run_button = QPushButton("Run and add layer")
         self.run_button.clicked.connect(self.run_query)
-        form.addRow('API key', self.key)
-        form.addRow('Operation', self.mode)
-        form.addRow('Query', self.value)
+        form.addRow("API key", self.key)
+        form.addRow("Operation", self.mode)
+        form.addRow("Query", self.value)
         form.addRow(self.notice)
         form.addRow(self.run_button)
         form.addRow(self.status)
@@ -41,12 +54,16 @@ class QueryDialog(QDialog):
         self.timer.timeout.connect(self.cancel_request)
 
     def update_hint(self):
-        self.value.setPlaceholderText('13.3777,52.5163;13.4286,52.5232' if self.mode.currentData() == 'route' else 'Brandenburg Gate, Berlin')
+        self.value.setPlaceholderText(
+            "13.3777,52.5163;13.4286,52.5232"
+            if self.mode.currentData() == "route"
+            else "Brandenburg Gate, Berlin"
+        )
 
     def run_query(self):
         key = self.key.text().strip()
-        if not key or any(c in key for c in '\r\n'):
-            self.status.setText('Enter a valid API key.')
+        if not key or any(c in key for c in "\r\n"):
+            self.status.setText("Enter a valid API key.")
             return
         mode = self.mode.currentData()
         try:
@@ -55,11 +72,16 @@ class QueryDialog(QDialog):
             self.status.setText(str(error))
             return
         request = QNetworkRequest(QUrl(url))
-        request.setRawHeader(b'Authorization', ('Bearer ' + key).encode('utf-8'))
-        request.setRawHeader(b'Accept', b'application/json')
-        request.setAttribute(QNetworkRequest.RedirectPolicyAttribute, QNetworkRequest.ManualRedirectPolicy)
+        request.setRawHeader(
+            b"Authorization", ("Bearer " + key).encode("utf-8")
+        )
+        request.setRawHeader(b"Accept", b"application/json")
+        request.setAttribute(
+            QNetworkRequest.RedirectPolicyAttribute,
+            QNetworkRequest.ManualRedirectPolicy,
+        )
         self.run_button.setEnabled(False)
-        self.status.setText('Requesting…')
+        self.status.setText("Requesting…")
         self.reply = QgsNetworkAccessManager.instance().get(request)
         self.reply.downloadProgress.connect(self.check_size)
         self.reply.finished.connect(lambda: self.finish_request(mode))
@@ -82,22 +104,36 @@ class QueryDialog(QDialog):
         try:
             status = reply.attribute(QNetworkRequest.HttpStatusCodeAttribute)
             if reply.error() != QNetworkReply.NoError or status != 200:
-                self.status.setText('Request failed (HTTP {}). Check your key, scopes, credits and connection. No automatic retry was made.'.format(status or 'unavailable'))
+                self.status.setText(
+                    "Request failed (HTTP {}). Check your key, scopes, credits and connection. No automatic retry was made.".format(
+                        status or "unavailable"
+                    )
+                )
                 return
             data = bytes(reply.readAll())
             if len(data) > MAX_BYTES:
-                raise ValueError('Response exceeded the 5 MB limit.')
+                raise ValueError("Response exceeded the 5 MB limit.")
             collection = feature_collection(mode, json.loads(data))
-            if not collection['features']:
-                self.status.setText('No matching results. Try a more specific address.')
+            if not collection["features"]:
+                self.status.setText(
+                    "No matching results. Try a more specific address."
+                )
                 return
-            layer = QgsVectorLayer(json.dumps(collection), 'OSRMRoute ' + mode, 'ogr')
+            layer = QgsVectorLayer(
+                json.dumps(collection), "OSRMRoute " + mode, "ogr"
+            )
             if not layer.isValid():
-                raise ValueError('QGIS could not load the response as a vector layer.')
+                raise ValueError(
+                    "QGIS could not load the response as a vector layer."
+                )
             QgsProject.instance().addMapLayer(layer)
-            self.status.setText('Added {} feature(s).'.format(len(collection['features'])))
+            self.status.setText(
+                "Added {} feature(s).".format(len(collection["features"]))
+            )
         except (ValueError, TypeError, KeyError):
-            self.status.setText('The response could not be loaded. Check the request and try again.')
+            self.status.setText(
+                "The response could not be loaded. Check the request and try again."
+            )
         finally:
             reply.deleteLater()
 
@@ -114,9 +150,11 @@ class OSRMRoutePlugin:
         self.dialog = None
 
     def initGui(self):
-        self.action = QAction('OSRMRoute: addresses and routes', self.iface.mainWindow())
+        self.action = QAction(
+            "OSRMRoute: addresses and routes", self.iface.mainWindow()
+        )
         self.action.triggered.connect(self.open_dialog)
-        self.iface.addPluginToWebMenu('OSRMRoute', self.action)
+        self.iface.addPluginToWebMenu("OSRMRoute", self.action)
 
     def open_dialog(self):
         if self.dialog is None:
@@ -130,6 +168,6 @@ class OSRMRoutePlugin:
             self.dialog.deleteLater()
             self.dialog = None
         if self.action:
-            self.iface.removePluginWebMenu('OSRMRoute', self.action)
+            self.iface.removePluginWebMenu("OSRMRoute", self.action)
             self.action.deleteLater()
             self.action = None
