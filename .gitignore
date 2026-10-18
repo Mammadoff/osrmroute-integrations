@@ -1,0 +1,8 @@
+**/node_modules/
+**/dist/
+**/__pycache__/
+*.tgz
+*.zip
+.env*
+.DS_Store
+STATUS.md

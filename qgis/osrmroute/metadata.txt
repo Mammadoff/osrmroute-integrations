@@ -1,0 +1,16 @@
+[general]
+name=OSRMRoute
+qgisMinimumVersion=3.34
+qgisMaximumVersion=3.99
+version=0.1.0
+author=OSRMRoute
+email=support@osrmroute.com
+description=Find addresses and display driving routes as QGIS vector layers.
+about=Connect QGIS to OSRMRoute geocoding and routing APIs using your own API key. Existing service scopes, geographic coverage, plan limits and credits apply. Address and route queries are sent to OSRMRoute only when you click Run. Keys are kept in memory for the dialog session and never saved to the QGIS project.
+category=Web
+homepage=https://osrmroute.com/docs
+repository=https://github.com/Mammadoff/osrmroute-integrations
+tracker=https://github.com/Mammadoff/osrmroute-integrations/issues
+experimental=True
+deprecated=False
+hasProcessingProvider=False

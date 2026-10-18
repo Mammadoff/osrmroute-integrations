@@ -1,0 +1,12 @@
+{
+  "url": "/api/1/geocode",
+  "method": "GET",
+  "qs": {
+    "q": "{{parameters.q}}",
+    "limit": "{{parameters.limit}}",
+    "lang": "{{parameters.lang}}"
+  },
+  "response": {
+    "output": "{{body}}"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "baseUrl": "https://osrmroute.com",
+  "headers": {
+    "Authorization": "Bearer {{connection.apiKey}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] OSRMRoute request failed. Check your key, service scope, plan and request parameters."
+    }
+  },
+  "log": {
+    "sanitize": [
+      "request.headers.authorization",
+      "request.headers.Authorization"
+    ]
+  }
+}

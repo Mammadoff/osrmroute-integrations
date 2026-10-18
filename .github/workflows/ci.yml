@@ -1,0 +1,36 @@
+name: Integrations CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  n8n:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: n8n-nodes-osrmroute
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: n8n-nodes-osrmroute/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - run: npm run lint
+      - run: npm test
+      - run: npm pack --ignore-scripts --dry-run
+  qgis:
+    runs-on: ubuntu-24.04
+    env:
+      QT_QPA_PLATFORM: offscreen
+      PYTHONPATH: qgis
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends python3-qgis
+      - run: /usr/bin/python3 -m unittest discover -s qgis/tests -v
+      - run: python3 scripts/package_qgis.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: osrmroute-qgis
+          path: dist/*.zip

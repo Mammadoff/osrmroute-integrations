@@ -1,0 +1,10 @@
+[
+  {
+    "name": "apiKey",
+    "type": "password",
+    "label": "API key",
+    "required": true,
+    "editable": true,
+    "help": "Create an API key at https://osrmroute.com/dashboard. Your plan, scopes and credits apply."
+  }
+]

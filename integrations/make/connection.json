@@ -1,0 +1,27 @@
+{
+  "url": "https://osrmroute.com/api/mcp",
+  "method": "POST",
+  "headers": {
+    "Authorization": "Bearer {{parameters.apiKey}}",
+    "Accept": "application/json, text/event-stream",
+    "Content-Type": "application/json",
+    "MCP-Protocol-Version": "2025-06-18"
+  },
+  "body": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "ping"
+  },
+  "response": {
+    "valid": "{{statusCode === 200 && !body.error}}",
+    "error": {
+      "message": "[{{statusCode}}] API key validation failed. Use an active OSRMRoute key."
+    }
+  },
+  "log": {
+    "sanitize": [
+      "request.headers.Authorization",
+      "request.headers.authorization"
+    ]
+  }
+}

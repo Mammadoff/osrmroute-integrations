@@ -1,0 +1,28 @@
+[
+  {
+    "name": "q",
+    "type": "text",
+    "label": "Address",
+    "required": true,
+    "help": "Example: Brandenburg Gate, Berlin"
+  },
+  {
+    "name": "limit",
+    "type": "number",
+    "label": "Result limit",
+    "required": true,
+    "default": 5,
+    "validate": {
+      "min": 1,
+      "max": 20
+    }
+  },
+  {
+    "name": "lang",
+    "type": "text",
+    "label": "Language code",
+    "required": true,
+    "default": "en",
+    "help": "Example: en, de, fr, az"
+  }
+]

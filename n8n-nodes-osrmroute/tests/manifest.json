@@ -1,0 +1,227 @@
+[
+  {
+    "operationId": "get_routing",
+    "method": "GET",
+    "path": "/api/v1/osrm/route/v1/{profile}/{coordinates}"
+  },
+  {
+    "operationId": "post_route_optimization",
+    "method": "POST",
+    "path": "/api/1/vrp"
+  },
+  {
+    "operationId": "get_geocoding",
+    "method": "GET",
+    "path": "/api/1/geocode"
+  },
+  {
+    "operationId": "get_places",
+    "method": "GET",
+    "path": "/api/1/places"
+  },
+  {
+    "operationId": "get_matrix",
+    "method": "GET",
+    "path": "/api/v1/osrm/table/v1/{profile}/{coordinates}"
+  },
+  {
+    "operationId": "get_isochrones",
+    "method": "GET",
+    "path": "/api/1/isochrone"
+  },
+  {
+    "operationId": "get_map_matching",
+    "method": "GET",
+    "path": "/api/v1/osrm/match/v1/{profile}/{coordinates}"
+  },
+  {
+    "operationId": "get_nearest",
+    "method": "GET",
+    "path": "/api/v1/osrm/nearest/v1/{profile}/{coordinates}"
+  },
+  {
+    "operationId": "get_trip",
+    "method": "GET",
+    "path": "/api/v1/osrm/trip/v1/{profile}/{coordinates}"
+  },
+  {
+    "operationId": "post_location_clustering",
+    "method": "POST",
+    "path": "/api/1/cluster"
+  },
+  {
+    "operationId": "get_directions",
+    "method": "GET",
+    "path": "/api/1/directions"
+  },
+  {
+    "operationId": "get_snap_to_road",
+    "method": "GET",
+    "path": "/api/1/snap"
+  },
+  {
+    "operationId": "get_autocomplete",
+    "method": "GET",
+    "path": "/api/1/autocomplete"
+  },
+  {
+    "operationId": "post_batch_geocoding",
+    "method": "POST",
+    "path": "/api/1/geocode/batch"
+  },
+  {
+    "operationId": "get_timezone",
+    "method": "GET",
+    "path": "/api/1/timezone"
+  },
+  {
+    "operationId": "get_elevation",
+    "method": "GET",
+    "path": "/api/1/elevation"
+  },
+  {
+    "operationId": "get_boundary",
+    "method": "GET",
+    "path": "/api/1/boundary"
+  },
+  {
+    "operationId": "post_geofencing",
+    "method": "POST",
+    "path": "/api/1/geofence"
+  },
+  {
+    "operationId": "post_elevation_profile",
+    "method": "POST",
+    "path": "/api/1/elevation/profile"
+  },
+  {
+    "operationId": "get_solar",
+    "method": "GET",
+    "path": "/api/1/solar"
+  },
+  {
+    "operationId": "post_geometry",
+    "method": "POST",
+    "path": "/api/1/geometry"
+  },
+  {
+    "operationId": "get_coordinate_conversion",
+    "method": "GET",
+    "path": "/api/1/convert"
+  },
+  {
+    "operationId": "get_country_info",
+    "method": "GET",
+    "path": "/api/1/country"
+  },
+  {
+    "operationId": "get_speed_limit",
+    "method": "GET",
+    "path": "/api/1/speed-limit"
+  },
+  {
+    "operationId": "createBackgroundJob",
+    "method": "POST",
+    "path": "/api/jobs"
+  },
+  {
+    "operationId": "listBackgroundJobs",
+    "method": "GET",
+    "path": "/api/jobs"
+  },
+  {
+    "operationId": "getBackgroundJob",
+    "method": "GET",
+    "path": "/api/jobs/{id}"
+  },
+  {
+    "operationId": "cancelQueuedJob",
+    "method": "DELETE",
+    "path": "/api/jobs/{id}"
+  },
+  {
+    "operationId": "runSandboxFixture",
+    "method": "POST",
+    "path": "/api/sandbox"
+  },
+  {
+    "operationId": "getSourceMetadata",
+    "method": "GET",
+    "path": "/api/source-metadata"
+  },
+  {
+    "operationId": "placeDetails",
+    "method": "POST",
+    "path": "/api/v1/places/details"
+  },
+  {
+    "operationId": "naturalSearch",
+    "method": "POST",
+    "path": "/api/v1/search/natural"
+  },
+  {
+    "operationId": "previewTextStyle",
+    "method": "POST",
+    "path": "/api/v1/studio/preview"
+  },
+  {
+    "operationId": "createStaticMap",
+    "method": "POST",
+    "path": "/api/v1/maps/static"
+  },
+  {
+    "operationId": "queryMapDataset",
+    "method": "POST",
+    "path": "/api/v1/maps/datasets/{id}/query"
+  },
+  {
+    "operationId": "searchAlongRoute",
+    "method": "POST",
+    "path": "/api/v1/places/along-route"
+  },
+  {
+    "operationId": "structuredGeocode",
+    "method": "POST",
+    "path": "/api/v1/search/structured"
+  },
+  {
+    "operationId": "suggestPlaces",
+    "method": "POST",
+    "path": "/api/v1/search/suggest"
+  },
+  {
+    "operationId": "retrievePlace",
+    "method": "POST",
+    "path": "/api/v1/search/retrieve"
+  },
+  {
+    "operationId": "listStudioResources",
+    "method": "GET",
+    "path": "/api/v1/studio/{resource}"
+  },
+  {
+    "operationId": "manageStudioResource",
+    "method": "POST",
+    "path": "/api/v1/studio/{resource}"
+  },
+  {
+    "operationId": "road_data_lookup",
+    "method": "POST",
+    "path": "/api/v1/roads/lookup"
+  },
+  {
+    "operationId": "road_data_batch",
+    "method": "POST",
+    "path": "/api/v1/roads/batch"
+  },
+  {
+    "operationId": "road_data_signs",
+    "method": "POST",
+    "path": "/api/v1/roads/signs"
+  },
+  {
+    "operationId": "road_data_usage",
+    "method": "POST",
+    "path": "/api/v1/roads/usage"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "hits": [
+    {
+      "name": "Brandenburg Gate",
+      "city": "Berlin",
+      "country": "Germany",
+      "countrycode": "DE",
+      "point": {
+        "lat": 52.5163,
+        "lng": 13.3777
+      }
+    }
+  ],
+  "took": 12
+}

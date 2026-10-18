@@ -1,0 +1,54 @@
+[
+  {
+    "name": "hits",
+    "type": "array",
+    "label": "Places",
+    "spec": {
+      "type": "collection",
+      "spec": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "city",
+          "type": "text",
+          "label": "City"
+        },
+        {
+          "name": "country",
+          "type": "text",
+          "label": "Country"
+        },
+        {
+          "name": "countrycode",
+          "type": "text",
+          "label": "Country code"
+        },
+        {
+          "name": "point",
+          "type": "collection",
+          "label": "Coordinates",
+          "spec": [
+            {
+              "name": "lat",
+              "type": "number",
+              "label": "Latitude"
+            },
+            {
+              "name": "lng",
+              "type": "number",
+              "label": "Longitude"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "took",
+    "type": "number",
+    "label": "Processing time"
+  }
+]
