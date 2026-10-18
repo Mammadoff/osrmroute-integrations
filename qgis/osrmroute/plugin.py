@@ -28,7 +28,7 @@ class QueryDialog(QDialog):
         self.reply = None
         form = QFormLayout(self)
         self.key = QLineEdit()
-        self.key.setEchoMode(QLineEdit.Password)
+        self.key.setEchoMode(QLineEdit.EchoMode.Password)
         self.mode = QComboBox()
         self.mode.addItem("Find an address", "geocode")
         self.mode.addItem("Driving route", "route")
@@ -72,13 +72,11 @@ class QueryDialog(QDialog):
             self.status.setText(str(error))
             return
         request = QNetworkRequest(QUrl(url))
-        request.setRawHeader(
-            b"Authorization", ("Bearer " + key).encode("utf-8")
-        )
+        request.setRawHeader(b"Authorization", ("Bearer " + key).encode("utf-8"))
         request.setRawHeader(b"Accept", b"application/json")
         request.setAttribute(
-            QNetworkRequest.RedirectPolicyAttribute,
-            QNetworkRequest.ManualRedirectPolicy,
+            QNetworkRequest.Attribute.RedirectPolicyAttribute,
+            QNetworkRequest.RedirectPolicy.ManualRedirectPolicy,
         )
         self.run_button.setEnabled(False)
         self.status.setText("Requesting…")
@@ -102,8 +100,8 @@ class QueryDialog(QDialog):
             return
         self.run_button.setEnabled(True)
         try:
-            status = reply.attribute(QNetworkRequest.HttpStatusCodeAttribute)
-            if reply.error() != QNetworkReply.NoError or status != 200:
+            status = reply.attribute(QNetworkRequest.Attribute.HttpStatusCodeAttribute)
+            if reply.error() != QNetworkReply.NetworkError.NoError or status != 200:
                 self.status.setText(
                     "Request failed (HTTP {}). Check your key, scopes, credits and connection. No automatic retry was made.".format(
                         status or "unavailable"
@@ -115,17 +113,11 @@ class QueryDialog(QDialog):
                 raise ValueError("Response exceeded the 5 MB limit.")
             collection = feature_collection(mode, json.loads(data))
             if not collection["features"]:
-                self.status.setText(
-                    "No matching results. Try a more specific address."
-                )
+                self.status.setText("No matching results. Try a more specific address.")
                 return
-            layer = QgsVectorLayer(
-                json.dumps(collection), "OSRMRoute " + mode, "ogr"
-            )
+            layer = QgsVectorLayer(json.dumps(collection), "OSRMRoute " + mode, "ogr")
             if not layer.isValid():
-                raise ValueError(
-                    "QGIS could not load the response as a vector layer."
-                )
+                raise ValueError("QGIS could not load the response as a vector layer.")
             QgsProject.instance().addMapLayer(layer)
             self.status.setText(
                 "Added {} feature(s).".format(len(collection["features"]))

@@ -40,18 +40,10 @@ class CoreTests(unittest.TestCase):
     def test_geocode_features(self):
         data = feature_collection(
             "geocode",
-            {
-                "hits": [
-                    {"name": "Berlin", "point": {"lat": 52.5, "lng": 13.4}}
-                ]
-            },
+            {"hits": [{"name": "Berlin", "point": {"lat": 52.5, "lng": 13.4}}]},
         )
-        self.assertEqual(
-            data["features"][0]["geometry"]["coordinates"], [13.4, 52.5]
-        )
-        self.assertEqual(
-            feature_collection("geocode", {"hits": []})["features"], []
-        )
+        self.assertEqual(data["features"][0]["geometry"]["coordinates"], [13.4, 52.5])
+        self.assertEqual(feature_collection("geocode", {"hits": []})["features"], [])
 
     def test_route_features_and_missing_data(self):
         data = feature_collection(

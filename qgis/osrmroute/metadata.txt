@@ -2,7 +2,7 @@
 name=OSRMRoute
 qgisMinimumVersion=3.34
 qgisMaximumVersion=3.99
-version=0.1.0
+version=0.1.1
 author=OSRMRoute
 email=support@osrmroute.com
 description=Find addresses and display driving routes as QGIS vector layers.

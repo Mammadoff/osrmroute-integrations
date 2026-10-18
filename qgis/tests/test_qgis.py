@@ -6,6 +6,8 @@ import unittest
 from osrmroute.core import feature_collection
 from osrmroute.plugin import OSRMRoutePlugin, QueryDialog
 from qgis.core import QgsApplication, QgsVectorLayer
+from qgis.PyQt.QtNetwork import QNetworkRequest, QNetworkReply
+from qgis.PyQt.QtCore import QUrl
 
 app = QgsApplication([], False)
 app.initQgis()
@@ -21,14 +23,25 @@ class NativeTests(unittest.TestCase):
         self.assertEqual(dialog.key.text(), "")
         dialog.deleteLater()
 
+    def test_scoped_network_enums(self):
+        request = QNetworkRequest(QUrl("https://osrmroute.com"))
+        request.setAttribute(
+            QNetworkRequest.Attribute.RedirectPolicyAttribute,
+            QNetworkRequest.RedirectPolicy.ManualRedirectPolicy,
+        )
+        self.assertEqual(
+            request.attribute(QNetworkRequest.Attribute.RedirectPolicyAttribute),
+            QNetworkRequest.RedirectPolicy.ManualRedirectPolicy,
+        )
+        self.assertIsNone(
+            request.attribute(QNetworkRequest.Attribute.HttpStatusCodeAttribute)
+        )
+        self.assertEqual(int(QNetworkReply.NetworkError.NoError), 0)
+
     def test_real_ogr_geojson_layer(self):
         data = feature_collection(
             "geocode",
-            {
-                "hits": [
-                    {"name": "Berlin", "point": {"lat": 52.5, "lng": 13.4}}
-                ]
-            },
+            {"hits": [{"name": "Berlin", "point": {"lat": 52.5, "lng": 13.4}}]},
         )
         layer = QgsVectorLayer(json.dumps(data), "test", "ogr")
         self.assertTrue(layer.isValid())

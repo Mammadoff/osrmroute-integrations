@@ -10,9 +10,7 @@ def point(value):
     if not isinstance(value, (list, tuple)) or len(value) != 2:
         raise ValueError("A point must contain longitude and latitude.")
     if any(
-        isinstance(x, bool)
-        or not isinstance(x, (int, float))
-        or not math.isfinite(x)
+        isinstance(x, bool) or not isinstance(x, (int, float)) or not math.isfinite(x)
         for x in value
     ):
         raise ValueError("Coordinates must be finite numbers.")
@@ -58,9 +56,7 @@ def feature_collection(mode, payload):
         if not isinstance(hits, list):
             raise ValueError("Address response has no results array.")
         for hit in hits:
-            if not isinstance(hit, dict) or not isinstance(
-                hit.get("point"), dict
-            ):
+            if not isinstance(hit, dict) or not isinstance(hit.get("point"), dict):
                 raise TypeError("Invalid address result.")
             coords = hit.get("point", {})
             geometry = {
