@@ -1,4 +1,4 @@
-import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
+import { NodeConnectionTypes, type INodeType, type INodeTypeDescription, type IExecuteSingleFunctions, type IHttpRequestOptions } from 'n8n-workflow';
 import { operations } from './operations';
 
 export class Osrmroute implements INodeType {
@@ -17,6 +17,14 @@ export class Osrmroute implements INodeType {
    disableFollowRedirect: true,
    timeout: 30000,
   },
-  properties: operations,
+  properties: operations.map((property) => property.name === 'operation' ? {
+   ...property,
+   routing: { send: { preSend: [enforceRequestBounds] } },
+  } : property),
  };
+}
+
+// n8n applies its global timeout after requestDefaults; enforce the bound just before HTTP.
+export async function enforceRequestBounds(this: IExecuteSingleFunctions, options: IHttpRequestOptions): Promise<IHttpRequestOptions> {
+ return { ...options, timeout: 30000, disableFollowRedirect: true };
 }

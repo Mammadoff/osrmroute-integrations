@@ -6,4 +6,4 @@ All requests inherit a fixed OSRMRoute origin and per-user API-key connection. N
 
 The MCP tool module parses a JSON arguments object and rejects JSON-RPC and tool errors, including errors returned with HTTP 200.
 
-Publication remains blocked on a successful real Make scenario run using a dedicated OSRMRoute key. This source draft is not a public or approved Make catalog entry.
+Live acceptance on 2026-10-19: Make executed `geocode_address` with `{"q":"Berlin"}` through the saved dedicated connection. The module returned Berlin results and `isError: false`. The acceptance scenario remains inactive (manual execution only). Catalog publication and review remain pending. This source draft is not a public or approved Make catalog entry.
