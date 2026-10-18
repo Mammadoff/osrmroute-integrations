@@ -1,4 +1,4 @@
-# Make custom app (private draft)
+# Make custom app
 
 The app provides address geocoding and an MCP tool module covering 18 location tools.
 `communication.json`, `expect.json`, `interface.json` and `samples.json` correspond to Make builder tabs.
@@ -6,4 +6,4 @@ All requests inherit a fixed OSRMRoute origin and per-user API-key connection. N
 
 The MCP tool module parses a JSON arguments object and rejects JSON-RPC and tool errors, including errors returned with HTTP 200.
 
-Live acceptance on 2026-10-19: Make executed `geocode_address` with `{"q":"Berlin"}` through the saved dedicated connection. The module returned Berlin results and `isError: false`. The acceptance scenario remains inactive (manual execution only). Catalog publication and review remain pending. This source draft is not a public or approved Make catalog entry.
+Live acceptance on 2026-10-19: Make executed `geocode_address` with `{"q":"Berlin"}` through the saved dedicated connection. The module returned Berlin results and `isError: false`. The acceptance scenario remains inactive (manual execution only). The app is published for installation by invitation: https://www.make.com/en/hq/app-invitation/a01f9009f3ba8f7f888cdca604409b13 . Make catalog review is separate and remains pending.

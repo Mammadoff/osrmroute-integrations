@@ -7,7 +7,7 @@ Official integration sources for [OSRMRoute](https://osrmroute.com).
 | MCP | Available through the official MCP registry: `io.github.Mammadoff/osrmroute`; endpoint `https://osrmroute.com/api/mcp` |
 | n8n | Development package covering 45 public OpenAPI operations. npm release and workflow acceptance pending |
 | QGIS | [Experimental 0.1.1 ZIP](https://github.com/Mammadoff/osrmroute-integrations/releases/tag/qgis-v0.1.1) available. QGIS portal security and Qt6 checks passed; moderator approval and real API acceptance pending |
-| Make | Private app under development; not yet a public catalog integration |
+| Make | [Published invitation](https://www.make.com/en/hq/app-invitation/a01f9009f3ba8f7f888cdca604409b13). Live MCP geocoding passed; catalog review pending |
 | RapidAPI | Existing private listing being updated; not yet publicly available |
 
 Every integration uses the user's own OSRMRoute key and existing plan, scopes, credits and geographic coverage. None grants extra credits. API keys must never be checked in. Use a dedicated restricted key for each automation.
