@@ -3,7 +3,10 @@
 Community node for OSRMRoute location APIs. It covers all 45 operations in the bundled public OpenAPI contract, including geocoding, routing, matrices, isochrones, places, road data, background jobs and Map Studio.
 
 ## Status
-Development build. Not yet published to npm or verified for n8n Cloud. Hosted execution still requires an end-to-end test before release.
+Initial community release for self-hosted n8n. Not verified for n8n Cloud. The n8n routing engine is covered by automated execution tests; live authenticated n8n workflow acceptance remains pending. Start with a restricted test key before production use.
+
+## Installation
+In self-hosted n8n, open Settings → Community nodes → Install and enter `n8n-nodes-osrmroute`. Community-node installation must be enabled by your n8n administrator.
 
 ## Credentials
 Create an API key in your [OSRMRoute dashboard](https://osrmroute.com/dashboard). Add an OSRMRoute API credential in n8n. The key is a password field and is sent only in the Authorization header. Connection testing uses an unbilled MCP ping. API calls use your existing plan, service scopes and credits; this package adds no allowance. Free self-hosted n8n Community Edition can run community nodes; n8n Cloud has separate subscription and verification requirements.
