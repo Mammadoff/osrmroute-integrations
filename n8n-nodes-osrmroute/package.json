@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-osrmroute",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OSRMRoute location APIs for n8n: routing, geocoding, places, road data and map studio",
   "license": "MIT",
   "homepage": "https://osrmroute.com/docs/automation",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Mammadoff/osrmroute-integrations.git",
+    "url": "git+https://github.com/Mammadoff/osrmroute-integrations.git",
     "directory": "n8n-nodes-osrmroute"
   },
   "scripts": {
