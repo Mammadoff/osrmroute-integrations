@@ -8,6 +8,7 @@ Official integration sources for [OSRMRoute](https://osrmroute.com).
 | n8n | [npm package](https://www.npmjs.com/package/n8n-nodes-osrmroute) covering 45 public OpenAPI operations. Self-hosted community installation; n8n Cloud verification and live authenticated n8n workflow acceptance pending |
 | QGIS | [Experimental 0.1.1 ZIP](https://github.com/Mammadoff/osrmroute-integrations/releases/tag/qgis-v0.1.1) available. QGIS portal security and Qt6 checks passed; moderator approval and real API acceptance pending |
 | Make | [Published invitation](https://www.make.com/en/hq/app-invitation/a01f9009f3ba8f7f888cdca604409b13). Live MCP geocoding passed; catalog review pending |
+| Zapier | [Private beta invitation](https://zapier.com/developer/public-invite/248109/2d51502f43640f7bbc18143a4424d8a1/). Find Address authentication and real Zap editor search passed; App Directory publication pending. [Setup guide](integrations/zapier/README.md) |
 | RapidAPI | Existing private listing being updated; not yet publicly available |
 
 Every integration uses the user's own OSRMRoute key and existing plan, scopes, credits and geographic coverage. None grants extra credits. API keys must never be checked in. Use a dedicated restricted key for each automation.
